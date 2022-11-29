@@ -2,12 +2,18 @@ require("dotenv").config();
 const express = require("express");
 const db = require("./db");
 const cors = require("cors");
-
+const path=require("path");
 const app = express();
 
 app.use(cors());
 
 app.use(express.json());
+
+
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname, 'clien/build'))
+}
 
 //get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
