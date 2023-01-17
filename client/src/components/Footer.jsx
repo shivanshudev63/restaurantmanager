@@ -6,7 +6,7 @@ import { Typography } from '@mui/material'
 const Footer = () => {
   return (
     <div style={{background:'black',bottom:'0',height:'50px',width:'100%',position:'fixed',marginTop:'20px'}}>
- <Box
+ {/* <Box
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
@@ -15,7 +15,7 @@ const Footer = () => {
                 <a style={{color:'lightgrey',textDecoration:'none'}} href='https://personal-website-shivanshudev63.vercel.app/'>All Rights Reserved. Developed by: Shivanshu Dev</a>
                 </Typography>
                 
-              </Box>
+              </Box> */}
 
     </div>
   )

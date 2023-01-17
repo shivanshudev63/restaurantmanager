@@ -56,7 +56,7 @@ const Login = () => {
         <Box>
           <Paper elevation={24} className={classes.root}>
             <a
-              href="/ownerhome"
+              href="/restaurants/ownerSignIn"
               style={{ textDecoration: "none", color: "black" }}
             >
               <img src="./image2.png" alt="" className={classes.image} />
@@ -68,7 +68,7 @@ const Login = () => {
           </Typography>
         </Box>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 };

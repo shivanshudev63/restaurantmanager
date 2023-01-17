@@ -62,7 +62,7 @@ const OwnerRestaurantMenuPage = () => {
                 justifyContent="center" variant="h4" sx={{background:'white',padding:'10px',borderRadius:'50px',
            boxShadow: "1px 2px 9px black",marginTop:'10px',cursor:'pointer' }}>
                  <StarRating rating ={selectedRestaurant.restaurant.average_rating} />
-                 <span style={{color:'#FFA300',fontSize:'20px'}}>{selectedRestaurant.restaurant.count?`(${selectedRestaurant.restaurant.count})`:"(0)"}</span>
+                 <span style={{color:'#FFA300',fontSize:'20px'}}>{selectedRestaurant.restaurant.average_rating?`(${selectedRestaurant.restaurant.average_rating})`:"(0)"}</span>
                  
                 </Typography>
                 
@@ -88,7 +88,7 @@ const OwnerRestaurantMenuPage = () => {
         <AddMenu />
           <OwnerMenus menus={selectedRestaurant.menus} />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </>
     )}</div>
   )

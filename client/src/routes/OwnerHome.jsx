@@ -15,7 +15,7 @@ function Home  ()  {
     <Header />
     <AddRestaurant />
     <OwnerRestaurantList />
-    <Footer />
+    {/* <Footer /> */}
     </div>
   )
 }

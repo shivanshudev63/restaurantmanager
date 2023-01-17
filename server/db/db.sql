@@ -44,11 +44,24 @@ CREATE TABLE menus (
 );
 
 
+CREATE TABLE owners(
+    username VARCHAR(255) NOT NULL PRIMARY KEY,
+    password VARCHAR(255) NOT NULL
+)
+
+
+
+
+
 
 select * from restaurants left join (
     select restaurant_id, COUNT(*),
     TRUNC(AVG(rating),1)as average_rating from reviews group by restaurant_id)
      reviews on restaurants.id = reviews.restaurant_id where id = <id>;
+
+
+
+
 
 
 
@@ -69,3 +82,20 @@ INSERT INTO restaurants (name, location, price_range) values ($1, $2, $3) return
 
 
 INSERT INTO rstatus (restaurant_id,status) values (91,TRUE);
+
+
+
+
+
+CREATE TRIGGER status_update AFTER INSERT ON RESTAURANT FOR EACH ROW EXECUTE PROCEDURE close_restaurant();
+
+CREATE OR REPLACE FUNCTION close_restaurant() RETURNS trigger AS $$ BEGIN INSERT INTO RSTATUS(status) VALUES(close); RETURN NEW; END; $$ LANGUAGE 'plpgsql';
+
+
+
+AFTER INSERT Trigger CREATE TRIGGER review_update AFTER INSERT ON REVIEWS FOR EACH ROW EXECUTE PROCEDURE initialize_zero();
+
+
+CREATE OR REPLACE FUNCTION  review_update () RETURNS trigger AS $$ BEGIN INSERT INTO review(ratings) VALUES(“0 reviews”); RETURN NEW; END; $$ LANGUAGE 'plpgsql';
+
+select active_status from owners where exists(select username,password, case when username='fasd' and password='fadsd' then 'TRUE' else 'FALSE' end as active_status from owners);

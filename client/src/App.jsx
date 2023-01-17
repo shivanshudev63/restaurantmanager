@@ -13,6 +13,9 @@ import {
 import CustomerRestaurantMenuPage from "./routes/CustomerRestaurantMenuPage";
 import OwnerRestaurantMenuPage from "./routes/OwnerRestaurantMenuPage";
 import OwnerRestaurantdetailPage from "./routes/OwnerRestaurantDetailPage";
+import OwnerSignUpPage from "./routes/OwnerSignUpPage";
+import OwnerSignInPage from "./routes/OwnerSignInPage";
+
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Login />} />
+          <Route path="/restaurants/ownerLogin" element={<OwnerSignUpPage />} />
+          <Route path="/restaurants/ownerSignIn" element={<OwnerSignInPage />} />
 
           <Route path="/ownerhome" element={<OwnerHome />} />
           <Route path="/customerhome" element={<CustomerHome />} />

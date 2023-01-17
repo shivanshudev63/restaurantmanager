@@ -15,7 +15,7 @@ const Navbar = () => {
       }}
     >
       <Box display="flex" alignItems="center" justifyContent="center">
-        <Typography sx={{ marginTop: "15px", marginX:'15px'  }}>
+        <Typography sx={{ marginTop: "15px", marginX:"5px" }}>
           <a
             style={{
               color: "lightgrey",
@@ -23,21 +23,12 @@ const Navbar = () => {
             }}
             href="/login"
           >
-            Log Out
+            DASHBOARD
           </a>
         </Typography>
-        <Typography sx={{ marginTop: "15px",marginX:"15px" }}>
-          <a
-            style={{
-              color: "lightgrey",
-              textDecoration: "none",
-            }}
-            href="/restaurants/ownerLogin"
-          >
-           Add Account
-          </a>
-        </Typography>
+        
       </Box>
+     
     </div>
   );
 };

@@ -28,30 +28,7 @@ app.get("/api/v1/restaurants", async (req, res) => {
   }
 });
 
-//get a restaurants
-app.get("/api/v1/restaurants/ownerhome/:id/review", async (req, res) => {
-  console.log(req.params.id);
-  try {
-    const restaurant = await db.query(
-      "select * from restaurants left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1)as average_rating from reviews group by restaurant_id) reviews on restaurants.id = reviews.restaurant_id where id = $1",
-      [req.params.id]
-    );
-    const reviews = await db.query(
-      "select * from reviews where restaurant_id = $1",
-      [req.params.id]
-    );
 
-    res.status(200).json({
-      status: "success",
-      data: {
-        restaurant: restaurant.rows[0],
-        reviews: reviews.rows,
-      },
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
 
 //Update page display
 
@@ -85,7 +62,30 @@ app.get("/api/v1/restaurants/:id/update", async (req, res) => {
 });
 
 
+//get a restaurants
+app.get("/api/v1/restaurants/ownerhome/:id/review", async (req, res) => {
+  console.log(req.params.id);
+  try {
+    const restaurant = await db.query(
+      "select * from restaurants left join (select restaurant_id, COUNT(*), TRUNC(AVG(rating),1)as average_rating from reviews group by restaurant_id) reviews on restaurants.id = reviews.restaurant_id where id = $1",
+      [req.params.id]
+    );
+    const reviews = await db.query(
+      "select * from reviews where restaurant_id = $1",
+      [req.params.id]
+    );
 
+    res.status(200).json({
+      status: "success",
+      data: {
+        restaurant: restaurant.rows[0],
+        reviews: reviews.rows,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 app.get("/api/v1/restaurants/customerhome/:id/review", async (req, res) => {
   console.log(req.params.id);
@@ -285,4 +285,48 @@ app.delete("/api/v1/restaurants/ownerhome/:restaurant_id/menu/:id", async (req, 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
+});
+
+
+
+//Signup
+
+app.post("/api/v1/restaurants/ownerLogin", async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const results = await db.query(
+      "INSERT INTO owners (username, password) values ($1, $2) returning *",
+      [req.body.username, req.body.password]
+    );
+    console.log(results);
+    res.status(201).json({
+      status: "succes",
+      data: {
+        owners: results.rows[0],
+      },
+    });
+  } catch (err) {
+    console.log(err)
+  }
+});
+
+
+//SignIn
+
+app.post("/api/v1/restaurants/ownerSignIn", async (req, res) => {
+  try {
+    const results = await db.query(
+      "SELECT * FROM owners WHERE username=$1 AND password=$2",
+      [req.body.username, req.body.password]
+    );
+    res.status(201).json({
+      status: "succes",
+      data: {
+        owners: results.rows[0],
+      },
+    });
+  } catch (err) {
+    console.log(err)
+  }
 });

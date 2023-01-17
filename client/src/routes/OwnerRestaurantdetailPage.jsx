@@ -4,13 +4,14 @@ import { useContext, useEffect } from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import Reviews from "../components/Reviews";
+import AddReview from "../components/AddReview";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import StarRating from "../components/StarRating";
 import Footer from "../components/Footer";
 import OwnerReviewNavbar from "../components/OwnerReviewNavbar";
 
-const OwnerRestaurantdetailPage = () => {
+const RestaurantdetailPage = () => {
   const { id } = useParams();
   const { selectedRestaurant, setSelectedRestaurant } =
     useContext(RestaurantsContext);
@@ -61,8 +62,8 @@ const OwnerRestaurantdetailPage = () => {
                 rating={selectedRestaurant.restaurant.average_rating}
               />
               <span style={{ color: "#FFA300", fontSize: "20px" }}>
-                {selectedRestaurant.restaurant.count
-                  ? `(${selectedRestaurant.restaurant.count})`
+                {selectedRestaurant.restaurant.average_rating
+                  ? `(${selectedRestaurant.restaurant.average_rating})`
                   : "(0)"}
               </span>
             </Typography>
@@ -71,11 +72,12 @@ const OwnerRestaurantdetailPage = () => {
           <div className="mt-3">
             <Reviews reviews={selectedRestaurant.reviews} />
           </div>
-          <Footer />
+          {/* <AddReview /> */}
+          {/* <Footer /> */}
         </>
       )}
     </div>
   );
 };
 
-export default OwnerRestaurantdetailPage;
+export default RestaurantdetailPage;

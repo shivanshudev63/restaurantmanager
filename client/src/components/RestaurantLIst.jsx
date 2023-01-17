@@ -63,7 +63,7 @@ const RestaurantLIst = (props) => {
       <>
         <Box display="flex" alignItems="center" justifyContent="center">
           <StarRating rating={restaurant.average_rating} />
-          <span style={{ color: "#FFA300" }}>({restaurant.count})</span>
+          <span style={{ color: "#FFA300" }}>({restaurant.average_rating})</span>
         </Box>
       </>
     );

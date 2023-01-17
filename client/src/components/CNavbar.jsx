@@ -26,17 +26,7 @@ const Navbar = () => {
             Log Out
           </a>
         </Typography>
-        <Typography sx={{ marginTop: "15px",marginX:"15px" }}>
-          <a
-            style={{
-              color: "lightgrey",
-              textDecoration: "none",
-            }}
-            href="/restaurants/ownerLogin"
-          >
-           Add Account
-          </a>
-        </Typography>
+       
       </Box>
     </div>
   );

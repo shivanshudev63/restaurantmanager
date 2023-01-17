@@ -19,7 +19,7 @@ Update Restaurant
 </Typography>
 </Box>
       <UpdateRestaurant />
-      <Footer />
+      {/* <Footer /> */}
       
     </div>
   )

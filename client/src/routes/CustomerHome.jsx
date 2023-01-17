@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import RestaurantLIst from "../components/RestaurantLIst";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/CNavbar";
 
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
     <Navbar />
       <Header />
       <RestaurantLIst />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
