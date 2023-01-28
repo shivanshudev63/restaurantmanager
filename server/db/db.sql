@@ -53,6 +53,7 @@ CREATE TABLE owners(
 
 
 
+//Queries Used
 
 select * from restaurants left join (
     select restaurant_id, COUNT(*),
@@ -60,32 +61,29 @@ select * from restaurants left join (
      reviews on restaurants.id = reviews.restaurant_id where id = <id>;
 
 
-
-
-
-
-
-
-ADD CONSTRAINT reviews_restaurant_id_fkey FOREIGN KEY(restaurant_id)REFERENCES restaurants (id) ON DELETE CASCADE;
-
-
-DELETE FROM restaurants where id = $1
-
+select * from restaurants left join (
+    select restaurant_id, COUNT(*),TRUNC(AVG(rating),1) as average_rating from reviews group by restaurant_id)
+    reviews on restaurants.id =reviews.restaurant_id left join (select * from rstatus) 
+    rstatus on restaurants.id= rstatus.restaurant_id;
 
 INSERT INTO reviews (restaurant_id, name, review, rating) values ($1, $2, $3, $4) returning *;
 
 
-UPDATE restaurants SET name = $1, location = $2, price_range = $3 where id = $4 returning *
+UPDATE restaurants SET name = $1, price_range = $3 where id = $4 returning *
 
 
-INSERT INTO restaurants (name, location, price_range) values ($1, $2, $3) returning *
+INSERT INTO restaurants (name, price_range) values ($1, $2) returning *
 
 
 INSERT INTO rstatus (restaurant_id,status) values (91,TRUE);
 
+INSERT INTO menus (restaurant_id, item) values (1, 'French Cousine');
 
 
 
+
+
+//TRIGGERS
 
 CREATE TRIGGER status_update AFTER INSERT ON RESTAURANT FOR EACH ROW EXECUTE PROCEDURE close_restaurant();
 

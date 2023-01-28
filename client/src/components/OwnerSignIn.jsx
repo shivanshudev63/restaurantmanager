@@ -24,6 +24,10 @@ const handleSubmit = async(e)=>{
      
     history(`/ownerhome`);
     }
+
+    if(response.data.data.owners==undefined){
+      history('/ownerInvalid');
+    }
     
 }catch(err){
 

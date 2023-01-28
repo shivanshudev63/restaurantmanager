@@ -15,6 +15,7 @@ import OwnerRestaurantMenuPage from "./routes/OwnerRestaurantMenuPage";
 import OwnerRestaurantdetailPage from "./routes/OwnerRestaurantDetailPage";
 import OwnerSignUpPage from "./routes/OwnerSignUpPage";
 import OwnerSignInPage from "./routes/OwnerSignInPage";
+import Ownerinvalid from "./routes/InvalidLogin";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/restaurants/ownerLogin" element={<OwnerSignUpPage />} />
           <Route path="/restaurants/ownerSignIn" element={<OwnerSignInPage />} />
+          <Route path="/ownerinvalid" element={<Ownerinvalid />} />
 
           <Route path="/ownerhome" element={<OwnerHome />} />
           <Route path="/customerhome" element={<CustomerHome />} />

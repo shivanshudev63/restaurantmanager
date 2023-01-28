@@ -330,3 +330,21 @@ app.post("/api/v1/restaurants/ownerSignIn", async (req, res) => {
     console.log(err)
   }
 });
+
+
+app.post("/api/v1/restaurants/ownerinvalid", async (req, res) => {
+  try {
+    const results = await db.query(
+      "SELECT * FROM owners WHERE username=$1 AND password=$2",
+      [req.body.username, req.body.password]
+    );
+    res.status(201).json({
+      status: "succes",
+      data: {
+        owners: results.rows[0],
+      },
+    });
+  } catch (err) {
+    console.log(err)
+  }
+});
